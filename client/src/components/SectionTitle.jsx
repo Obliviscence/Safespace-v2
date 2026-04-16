@@ -1,3 +1,5 @@
+import React from "react";
+
 export function SectionTitle({ eyebrow, title, text, align = "left" }) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
 

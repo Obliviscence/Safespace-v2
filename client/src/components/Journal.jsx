@@ -1,3 +1,4 @@
+import React from "react";
 import { BookHeart, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 

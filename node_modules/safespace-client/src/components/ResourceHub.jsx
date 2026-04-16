@@ -1,3 +1,4 @@
+import React from "react";
 import { ArrowRight, HeartHandshake } from "lucide-react";
 import { emergencyContacts, resources } from "../data";
 

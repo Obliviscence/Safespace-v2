@@ -1,3 +1,4 @@
+import React from "react";
 import { LoaderCircle, Mic, SendHorizontal, Sparkles, Volume2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { detectMood, hasCrisisLanguage, starterMessages } from "../lib/chat";

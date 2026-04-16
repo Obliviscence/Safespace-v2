@@ -1,3 +1,4 @@
+import React from "react";
 import { MessageCircleHeart, Mic, Shield, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ChatPanel } from "./components/ChatPanel";
