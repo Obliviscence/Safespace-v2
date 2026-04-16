@@ -13,11 +13,11 @@ export function FeatureCard({ feature }: FeatureCardProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky">
             {feature.eyebrow}
           </p>
-          <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-white">
+          <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground">
             {feature.title}
           </h3>
         </div>
-        <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white/10 text-lavender">
+        <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-[linear-gradient(135deg,#dff0ff,#ebe0ff)] text-[#6f75bc]">
           <feature.icon className="size-5" />
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { LockKeyhole, ShieldCheck, Sparkles } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChatPreview } from "@/components/chat-preview";
 import { JournalCard } from "@/components/journal-card";
 import { MoodSelector } from "@/components/mood-selector";
@@ -21,6 +22,27 @@ type ProductPreviewTabsProps = {
   tabs: PreviewTab[];
 };
 
+const supportCards = [
+  {
+    key: "privacy",
+    title: "Privacy note",
+    icon: LockKeyhole,
+    iconClassName: "bg-[linear-gradient(135deg,#dff8ed,#ebfff6)] text-[#67a88d]",
+  },
+  {
+    key: "safety",
+    title: "Safety guidance",
+    icon: ShieldCheck,
+    iconClassName: "bg-[#fff1de] text-[#b67831]",
+  },
+  {
+    key: "entry",
+    title: "Best entry point",
+    icon: Sparkles,
+    iconClassName: "bg-[linear-gradient(135deg,#dff0ff,#ebe0ff)] text-[#6f75bc]",
+  },
+] as const;
+
 export function ProductPreviewTabs({
   activeTab,
   onTabChange,
@@ -31,6 +53,50 @@ export function ProductPreviewTabs({
   onMoodChange,
   tabs,
 }: ProductPreviewTabsProps) {
+  const reduceMotion = useReducedMotion();
+
+  function renderPrimaryPreview() {
+    switch (activeTab) {
+      case "voice":
+        return <VoicePreview mood={selectedMood} />;
+      case "mood":
+        return (
+          <SurfaceCard className="p-6 md:p-7">
+            <SectionHeading
+              eyebrow="Mood check-in"
+              title="Choose the kind of support you need first"
+              description="This changes the suggested chat opener, journal prompt, and the recommended guides below."
+            />
+            <div className="mt-6">
+              <MoodSelector
+                moods={moods}
+                selectedMood={selectedMood}
+                onSelect={onMoodChange}
+              />
+            </div>
+          </SurfaceCard>
+        );
+      case "journal":
+        return (
+          <JournalCard
+            mood={selectedMood}
+            journalValue={journalValue}
+            onChange={onJournalChange}
+          />
+        );
+      case "chat":
+      default:
+        return <ChatPreview mood={selectedMood} />;
+    }
+  }
+
+  const entryPointCopy =
+    activeTab === "voice"
+      ? selectedMood.voiceSuggestion
+      : activeTab === "journal"
+        ? selectedMood.journalPrompt
+        : selectedMood.chatOpener;
+
   return (
     <section id="app-preview" className="space-y-8">
       <SectionHeading
@@ -53,103 +119,85 @@ export function ProductPreviewTabs({
         </TabsList>
 
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_340px]">
-          <div>
-            <TabsContent value="chat">
-              <ChatPreview mood={selectedMood} />
-            </TabsContent>
-            <TabsContent value="voice">
-              <VoicePreview mood={selectedMood} />
-            </TabsContent>
-            <TabsContent value="mood">
-              <SurfaceCard className="p-6 md:p-7">
-                <SectionHeading
-                  eyebrow="Mood check-in"
-                  title="Choose the kind of support you need first"
-                  description="This changes the suggested chat opener, journal prompt, and the recommended guides below."
-                />
-                <div className="mt-6">
-                  <MoodSelector
-                    moods={moods}
-                    selectedMood={selectedMood}
-                    onSelect={onMoodChange}
-                  />
-                </div>
-              </SurfaceCard>
-            </TabsContent>
-            <TabsContent value="journal">
-              <JournalCard
-                mood={selectedMood}
-                journalValue={journalValue}
-                onChange={onJournalChange}
-              />
-            </TabsContent>
+          <div className="min-w-0">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeTab}
+                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                exit={reduceMotion ? {} : { opacity: 0, y: -10 }}
+                transition={{ duration: 0.24, ease: "easeOut" }}
+              >
+                <TabsContent value={activeTab} forceMount className="mt-0">
+                  {renderPrimaryPreview()}
+                </TabsContent>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          <div className="space-y-4">
+          <motion.div
+            className="space-y-4"
+            initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.32, ease: "easeOut" }}
+          >
             <SurfaceCard className="p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky">
                 Current mood context
               </p>
-              <h3 className="mt-3 font-display text-2xl font-semibold text-white">
+              <h3 className="mt-3 font-display text-2xl font-semibold text-foreground">
                 {selectedMood.label}
               </h3>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {selectedMood.description}
               </p>
-              <div className="mt-5 rounded-3xl bg-white/6 p-4">
-                <p className="text-sm font-semibold text-white">Recommended focus</p>
+              <div className="mt-5 rounded-3xl bg-[rgba(255,255,255,0.68)] p-4">
+                <p className="text-sm font-semibold text-foreground">Recommended focus</p>
                 <p className="mt-2 text-sm leading-7 text-muted-foreground">
                   {selectedMood.nextStep}
                 </p>
               </div>
             </SurfaceCard>
+          </motion.div>
+        </div>
 
-            <SurfaceCard className="p-5">
-              <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-2xl bg-white/10 text-mint">
-                  <LockKeyhole className="size-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">Privacy note</p>
-                  <p className="mt-1 text-sm leading-7 text-muted-foreground">
-                    Journal and reflection flows are designed to feel private and low-pressure.
-                  </p>
-                </div>
-              </div>
-            </SurfaceCard>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {supportCards.map((card, index) => {
+            const Icon = card.icon;
+            const text =
+              card.key === "privacy"
+                ? "Journal and reflection flows are designed to feel private and low-pressure."
+                : card.key === "safety"
+                  ? selectedMood.safetyNote
+                  : entryPointCopy;
 
-            <SurfaceCard className="p-5">
-              <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-2xl bg-[#f2cf9b]/16 text-[#ffdca7]">
-                  <ShieldCheck className="size-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">Safety guidance</p>
-                  <p className="mt-1 text-sm leading-7 text-muted-foreground">
-                    {selectedMood.safetyNote}
-                  </p>
-                </div>
-              </div>
-            </SurfaceCard>
-
-            <SurfaceCard className="p-5">
-              <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-2xl bg-white/10 text-lavender">
-                  <Sparkles className="size-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">Best entry point</p>
-                  <p className="mt-1 text-sm leading-7 text-muted-foreground">
-                    {activeTab === "voice"
-                      ? selectedMood.voiceSuggestion
-                      : activeTab === "journal"
-                        ? selectedMood.journalPrompt
-                        : selectedMood.chatOpener}
-                  </p>
-                </div>
-              </div>
-            </SurfaceCard>
-          </div>
+            return (
+              <motion.div
+                key={`${card.key}-${activeTab}-${selectedMood.key}`}
+                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.45 }}
+                transition={{ duration: 0.28, delay: index * 0.06, ease: "easeOut" }}
+              >
+                <SurfaceCard className="h-full p-5">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`grid size-10 place-items-center rounded-2xl ${card.iconClassName}`}
+                    >
+                      <Icon className="size-4" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{card.title}</p>
+                      <p className="mt-1 text-sm leading-7 text-muted-foreground">
+                        {text}
+                      </p>
+                    </div>
+                  </div>
+                </SurfaceCard>
+              </motion.div>
+            );
+          })}
         </div>
       </Tabs>
     </section>

@@ -10,6 +10,7 @@ import { GuidedFlow } from "@/components/guided-flow";
 import { HeroSection } from "@/components/hero-section";
 import { ProductPreviewTabs } from "@/components/product-preview-tabs";
 import { ResourceCard } from "@/components/resource-card";
+import { ResourceGuideViewer } from "@/components/resource-guide-viewer";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteHeader } from "@/components/site-header";
 import { TestimonialCard } from "@/components/testimonial-card";
@@ -29,6 +30,7 @@ export function HomeExperience() {
   const [selectedMoodKey, setSelectedMoodKey] = useState<MoodDefinition["key"]>("mixed");
   const [activeTab, setActiveTab] = useState<PreviewTabKey>("chat");
   const [journalValue, setJournalValue] = useState("");
+  const [activeResourceId, setActiveResourceId] = useState<string>("anxiety-map");
   const [scrolled, setScrolled] = useState(false);
   const [hideFloatingCta, setHideFloatingCta] = useState(false);
   const footerRef = useRef<HTMLDivElement | null>(null);
@@ -46,6 +48,13 @@ export function HomeExperience() {
       return aScore - bScore;
     });
   }, [selectedMood]);
+
+  const activeResource = useMemo(
+    () =>
+      recommendedResources.find((resource) => resource.id === activeResourceId) ??
+      recommendedResources[0],
+    [activeResourceId, recommendedResources],
+  );
 
   useEffect(() => {
     function onScroll() {
@@ -118,10 +127,17 @@ export function HomeExperience() {
                 <ResourceCard
                   resource={resource}
                   highlighted={selectedMood.recommendedResourceIds.includes(resource.id)}
+                  onRead={(selected) => setActiveResourceId(selected.id)}
                 />
               </AnimatedInView>
             ))}
           </div>
+
+          {activeResource ? (
+            <AnimatedInView delay={0.06}>
+              <ResourceGuideViewer resource={activeResource} />
+            </AnimatedInView>
+          ) : null}
         </section>
 
         <EmergencyHelpCard contacts={emergencyContacts} />

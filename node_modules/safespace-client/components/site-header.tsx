@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, MoonStar } from "lucide-react";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -22,16 +22,16 @@ export function SiteHeader({ scrolled }: SiteHeaderProps) {
     <header className="sticky top-4 z-50">
       <div
         className={cn(
-          "mx-auto flex max-w-[1380px] items-center justify-between rounded-full border border-white/10 bg-[rgba(9,15,30,0.72)] px-4 py-3 shadow-soft backdrop-blur-xl md:px-6",
-          scrolled && "border-white/16 bg-[rgba(9,15,30,0.86)]",
+          "mx-auto flex max-w-[1380px] items-center justify-between rounded-full border border-[rgba(123,152,214,0.20)] bg-[rgba(255,255,255,0.76)] px-4 py-3 shadow-soft backdrop-blur-xl transition-colors md:px-6",
+          scrolled && "bg-[rgba(255,255,255,0.90)]",
         )}
       >
         <Link href="/" className="flex items-center gap-3">
-          <span className="grid size-11 place-items-center rounded-full bg-white text-primary shadow-soft">
+          <span className="grid size-11 place-items-center rounded-full bg-[linear-gradient(135deg,#a9d7ff,#d7c4ff)] text-primary shadow-soft">
             <Heart className="size-5 fill-current" />
           </span>
           <div>
-            <p className="font-display text-lg font-semibold text-white">SafeSpace</p>
+            <p className="font-display text-lg font-semibold text-foreground">SafeSpace</p>
             <p className="text-xs tracking-[0.18em] text-muted-foreground">
               CALM SUPPORT APP
             </p>
@@ -43,7 +43,7 @@ export function SiteHeader({ scrolled }: SiteHeaderProps) {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/35 rounded-full px-1 py-1"
+              className="rounded-full px-1 py-1 text-sm font-medium text-muted-foreground transition hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/35"
             >
               {item.label}
             </a>
@@ -51,14 +51,6 @@ export function SiteHeader({ scrolled }: SiteHeaderProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="hidden h-11 items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 text-sm font-medium text-muted-foreground transition hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-sky/35 md:inline-flex"
-            aria-label="Soft dark theme is active"
-          >
-            <MoonStar className="size-4" />
-            Soft dark
-          </button>
           <Button asChild size="md">
             <a href="#app-preview">Start chat</a>
           </Button>

@@ -160,26 +160,10 @@ export const guidedSteps: GuidedStep[] = [
 ];
 
 export const previewTabs: PreviewTab[] = [
-  {
-    key: "chat",
-    label: "Chat",
-    description: "Mood-aware conversation preview",
-  },
-  {
-    key: "voice",
-    label: "Voice",
-    description: "Lower-friction voice check-in",
-  },
-  {
-    key: "mood",
-    label: "Mood",
-    description: "Signal what kind of support you need",
-  },
-  {
-    key: "journal",
-    label: "Journal",
-    description: "Reflect without pressure",
-  },
+  { key: "chat", label: "Chat", description: "Mood-aware conversation preview" },
+  { key: "voice", label: "Voice", description: "Lower-friction voice check-in" },
+  { key: "mood", label: "Mood", description: "Signal what kind of support you need" },
+  { key: "journal", label: "Journal", description: "Reflect without pressure" },
 ];
 
 export const resources: Resource[] = [
@@ -188,107 +172,181 @@ export const resources: Resource[] = [
     category: "Grounding",
     title: "60-second grounding reset",
     readTime: "1 min read",
-    description:
-      "A short sequence for feet, breath, and visual anchors when everything feels urgent.",
+    description: "A short sequence for feet, breath, and visual anchors when everything feels urgent.",
+    intro: "This reset is useful when your body feels alarmed and your mind is moving too fast. Keep it small and practical.",
+    steps: [
+      "Press both feet into the floor and notice where your body is supported.",
+      "Breathe in for four and out for six three times, without forcing a deep breath.",
+      "Name five things you can see and one thing you can touch right now.",
+      "Ask yourself: what is the next safe, simple action in the next two minutes?",
+    ],
+    whenToUse: "Best when you feel overwhelmed, panicky, or close to shutting down.",
   },
   {
     id: "urgent-support",
     category: "Safety",
     title: "What to do if you need urgent help",
     readTime: "2 min read",
-    description:
-      "A clear, practical checklist for contacting a crisis line, emergency support, or someone you trust.",
+    description: "A clear, practical checklist for contacting a crisis line, emergency support, or someone you trust.",
+    intro: "If your safety may change quickly, move from reflection to action. You do not need to decide alone.",
+    steps: [
+      "Call emergency support or a crisis line right away if you may act on thoughts of self-harm or suicide.",
+      "Tell one trusted person clearly: I need immediate support and I should not be alone right now.",
+      "Move away from anything you could use to hurt yourself, if possible.",
+      "Stay with another person or in a staffed place until the risk reduces.",
+    ],
+    whenToUse: "Use this guide when the situation feels urgent, unsafe, or hard to manage alone.",
   },
   {
     id: "body-reset",
     category: "Stress",
     title: "Body reset for overwhelm",
     readTime: "2 min read",
-    description:
-      "Jaw, shoulders, breath, and posture cues that reduce physical stress signals quickly.",
+    description: "Jaw, shoulders, breath, and posture cues that reduce physical stress signals quickly.",
+    intro: "When stress lives in your body, small physical adjustments can lower the intensity before you try to think clearly.",
+    steps: [
+      "Unclench your jaw and let your tongue drop from the roof of your mouth.",
+      "Lift your shoulders once, then let them fall naturally.",
+      "Lengthen your exhale so it is slightly longer than your inhale.",
+      "Sit back or lean against a surface so your body gets a clear support signal.",
+    ],
+    whenToUse: "Helpful when your chest feels tight, your jaw is tense, or you feel physically wound up.",
   },
   {
     id: "low-effort",
     category: "Low mood",
     title: "Low-effort support tools",
     readTime: "3 min read",
-    description:
-      "Five tiny actions that are realistic when motivation is low and energy is limited.",
+    description: "Five tiny actions that are realistic when motivation is low and energy is limited.",
+    intro: "On low-energy days, reduce the size of the task until it feels possible. Tiny care still counts.",
+    steps: [
+      "Drink a glass of water or take a few slow sips.",
+      "Open a curtain or step near a window for daylight.",
+      "Text one safe person a short message, even if it is only: rough day today.",
+      "Pick one task that takes under two minutes and stop after that if needed.",
+    ],
+    whenToUse: "Use this when everything feels heavy and even basic tasks feel like too much.",
   },
   {
     id: "slow-routine",
     category: "Routine",
     title: "A slower routine for heavy days",
     readTime: "3 min read",
-    description:
-      "How to shrink your day into a calmer, more survivable shape without guilt.",
+    description: "How to shrink your day into a calmer, more survivable shape without guilt.",
+    intro: "A slower routine is not failure. It is a way of lowering pressure so you can keep functioning with more care.",
+    steps: [
+      "Choose only one must-do task for the next few hours.",
+      "Group meals, water, and rest into the plan before optional work.",
+      "Lower stimulation where you can: fewer tabs, fewer notifications, less noise.",
+      "Check in again later instead of expecting the whole day to feel better immediately.",
+    ],
+    whenToUse: "Helpful on emotionally heavy days when your normal routine feels too demanding.",
   },
   {
     id: "gentle-reflection",
     category: "Reflection",
     title: "Questions for sorting mixed feelings",
     readTime: "2 min read",
-    description:
-      "A short set of prompts to separate what is loud, what is underneath, and what you need.",
+    description: "A short set of prompts to separate what is loud, what is underneath, and what you need.",
+    intro: "Mixed feelings often get clearer when you name layers instead of trying to solve all of them at once.",
+    steps: [
+      "What feels loudest on the surface right now?",
+      "What might be underneath that feeling?",
+      "What do I need more of in the next hour: rest, support, space, clarity, or comfort?",
+      "What is one small next step that matches that need?",
+    ],
+    whenToUse: "Use this when you feel tangled, conflicted, or emotionally unclear.",
   },
   {
     id: "anxiety-map",
     category: "Anxiety",
     title: "Map the worry, reduce the fog",
     readTime: "4 min read",
-    description:
-      "A simple way to separate imagined threat, real pressure, and the next controllable action.",
+    description: "A simple way to separate imagined threat, real pressure, and the next controllable action.",
+    intro: "Anxiety gets louder when everything feels equally urgent. Mapping the worry helps reduce that blur.",
+    steps: [
+      "Write down the exact worry in one sentence.",
+      "Ask: is this happening now, likely soon, or only possible?",
+      "Separate what you can act on today from what is not controllable right now.",
+      "Choose one action or one boundary, then stop planning for a moment.",
+    ],
+    whenToUse: "Helpful when your thoughts are racing or the same worry keeps looping.",
   },
   {
     id: "voice-reset",
     category: "Voice",
     title: "When voice check-ins help most",
     readTime: "2 min read",
-    description:
-      "Good use cases for speaking instead of typing and how to keep voice sessions private.",
+    description: "Good use cases for speaking instead of typing and how to keep voice sessions private.",
+    intro: "Speaking can reduce friction when your thoughts are moving faster than your hands or when writing feels too effortful.",
+    steps: [
+      "Use voice when typing feels slow, tiring, or emotionally flat.",
+      "Keep your first check-in short and concrete rather than explaining everything.",
+      "Use headphones or a private place if you want more emotional privacy.",
+      "Switch back to text if you want to keep a written record of what helped.",
+    ],
+    whenToUse: "Best when you need a lower-friction way to start expressing what is going on.",
   },
   {
     id: "maintenance",
     category: "Maintenance",
     title: "Keep steady days from slipping away",
     readTime: "3 min read",
-    description:
-      "A maintenance approach for sleep, boundaries, and routines that preserve emotional steadiness.",
+    description: "A maintenance approach for sleep, boundaries, and routines that preserve emotional steadiness.",
+    intro: "You do not have to wait for a bad day to use support well. Maintenance helps protect the steadier moments too.",
+    steps: [
+      "Notice one habit that helped this week and keep it simple enough to repeat.",
+      "Protect one boundary that reduces emotional drain.",
+      "Plan one supportive action for tomorrow while your energy is steadier.",
+      "Avoid turning a good day into pressure to optimize everything.",
+    ],
+    whenToUse: "Useful when you feel okay and want to support that steadiness without overdoing it.",
   },
   {
     id: "gratitude-check",
     category: "Resilience",
     title: "A grounded gratitude check",
     readTime: "2 min read",
-    description:
-      "Reflect on what helped without forcing positivity or pretending everything is solved.",
+    description: "Reflect on what helped without forcing positivity or pretending everything is solved.",
+    intro: "Gratitude works best when it stays specific and honest, not performative.",
+    steps: [
+      "Name one thing that eased your day a little.",
+      "Notice one person, place, or habit that helped.",
+      "Write one sentence about why it mattered.",
+      "Ask how you might make space for that support again.",
+    ],
+    whenToUse: "Best on steady or brighter days when you want to reinforce what helps.",
   },
   {
     id: "resilience",
     category: "Growth",
     title: "Build resilience without overcommitting",
     readTime: "4 min read",
-    description:
-      "Use brighter days to reinforce supportive habits before stress builds again.",
+    description: "Use brighter days to reinforce supportive habits before stress builds again.",
+    intro: "Resilience is built through repeatable care, not pressure to become perfectly consistent.",
+    steps: [
+      "Choose one supportive habit small enough to maintain on ordinary days.",
+      "Reduce friction by deciding where and when it happens.",
+      "Keep the goal realistic so missing once does not collapse the routine.",
+      "Use bright days for preparation, not for making impossible promises to yourself.",
+    ],
+    whenToUse: "Use this when you have some energy and want to strengthen your support system for later.",
   },
 ];
 
 export const testimonials: Testimonial[] = [
   {
-    quote:
-      "It doesn't try to fix me in one message. It helps me find the next small thing I can actually do.",
+    quote: "It doesn't try to fix me in one message. It helps me find the next small thing I can actually do.",
     author: "Maya",
     detail: "Uses short chat check-ins after work",
   },
   {
-    quote:
-      "The voice option feels more human on hard days. I can say what I need before I have the energy to write it well.",
+    quote: "The voice option feels more human on hard days. I can say what I need before I have the energy to write it well.",
     author: "Jon",
     detail: "Uses voice during anxious moments",
   },
   {
-    quote:
-      "I like that the safety boundaries are clear. It feels supportive without pretending it can replace real help.",
+    quote: "I like that the safety boundaries are clear. It feels supportive without pretending it can replace real help.",
     author: "Sana",
     detail: "Uses journaling and resource prompts",
   },
@@ -296,32 +354,23 @@ export const testimonials: Testimonial[] = [
 
 export const emergencyContacts: EmergencyContact[] = [
   {
-    label: "United States and Canada",
-    detail: "Call or text 988 for immediate crisis support.",
+    label: "India emergency response",
+    detail: "Dial 112 for immediate emergency help across India. It connects emergency support services including police, fire, and medical response.",
   },
   {
-    label: "Emergency services",
-    detail: "If you may act on thoughts of self-harm or suicide, call your local emergency number now.",
+    label: "Tele-MANAS mental health support",
+    detail: "For mental health support in India, call Tele-MANAS at 14416 or 1-800-891-4416 for free, 24/7 support.",
   },
   {
     label: "Trusted support",
-    detail: "Reach out to a friend, family member, therapist, or local crisis center and tell them you need immediate support.",
+    detail: "Reach out to a trusted friend, family member, therapist, caregiver, or nearby hospital and tell them clearly that you need immediate support.",
   },
 ];
 
 export const trustPoints = [
-  {
-    label: "Private journaling",
-    icon: BookHeart,
-  },
-  {
-    label: "Grounded support",
-    icon: MessageCircleHeart,
-  },
-  {
-    label: "Crisis-aware safeguards",
-    icon: ShieldCheck,
-  },
+  { label: "Private journaling", icon: BookHeart },
+  { label: "Grounded support", icon: MessageCircleHeart },
+  { label: "Crisis-aware safeguards", icon: ShieldCheck },
 ];
 
 export const boundaryItems: BoundaryItem[] = [

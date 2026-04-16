@@ -18,7 +18,7 @@ export function SurfaceCard<T extends ElementType = "div">({
   return (
     <Component
       className={cn(
-        "rounded-xl3 border border-white/10 bg-card shadow-halo backdrop-blur-sm",
+        "rounded-xl3 border border-border/70 bg-[rgba(255,255,255,0.84)] shadow-halo backdrop-blur-sm",
         className,
       )}
       {...props}

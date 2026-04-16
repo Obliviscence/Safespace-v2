@@ -39,6 +39,9 @@ export type Resource = {
   title: string;
   readTime: string;
   description: string;
+  intro: string;
+  steps: string[];
+  whenToUse: string;
 };
 
 export type Testimonial = {

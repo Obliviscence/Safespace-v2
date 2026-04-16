@@ -14,25 +14,25 @@ export function VoicePreview({ mood }: VoicePreviewProps) {
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-sky">
             Voice check-in
           </p>
-          <h3 className="mt-3 font-display text-2xl font-semibold text-white">
+          <h3 className="mt-3 font-display text-2xl font-semibold text-foreground">
             Lower friction when writing is too much
           </h3>
         </div>
-        <div className="grid size-12 place-items-center rounded-2xl bg-white/10 text-mint">
+        <div className="grid size-12 place-items-center rounded-2xl bg-[linear-gradient(135deg,#dff8ed,#fff0d9)] text-[#69ad96]">
           <AudioLines className="size-5" />
         </div>
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-3xl border border-white/10 bg-white/8 p-5">
+        <div className="rounded-3xl border border-[rgba(146,174,226,0.20)] bg-[rgba(255,255,255,0.68)] p-5">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold text-white">Microphone status</p>
+              <p className="text-sm font-semibold text-foreground">Microphone status</p>
               <p className="mt-1 text-sm text-muted-foreground">
                 Ready to listen in a supported browser
               </p>
             </div>
-            <span className="rounded-full bg-mint/20 px-3 py-1 text-xs font-semibold text-mint">
+            <span className="rounded-full bg-[#dff8ed] px-3 py-1 text-xs font-semibold text-[#589880]">
               Supported
             </span>
           </div>
@@ -53,7 +53,7 @@ export function VoicePreview({ mood }: VoicePreviewProps) {
         </div>
 
         <div className="space-y-4">
-          {[
+            {[
             {
               title: "Speak naturally",
               text: "Use voice to start the check-in before you have the energy to type it well.",
@@ -72,14 +72,14 @@ export function VoicePreview({ mood }: VoicePreviewProps) {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-white/10 bg-white/6 p-4"
+              className="rounded-3xl border border-[rgba(146,174,226,0.20)] bg-[rgba(255,255,255,0.62)] p-4"
             >
               <div className="flex items-center gap-3">
-                <div className="grid size-10 place-items-center rounded-2xl bg-white/10 text-lavender">
+                <div className="grid size-10 place-items-center rounded-2xl bg-[linear-gradient(135deg,#dff0ff,#ebe0ff)] text-[#6f75bc]">
                   <item.icon className="size-4" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">{item.title}</p>
+                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
                   <p className="mt-1 text-sm leading-7 text-muted-foreground">
                     {item.text}
                   </p>

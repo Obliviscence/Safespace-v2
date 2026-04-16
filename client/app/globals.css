@@ -3,6 +3,28 @@
 @tailwind utilities;
 
 :root {
+  --background: 216 100% 98%;
+  --foreground: 221 35% 20%;
+  --card: 0 0% 100%;
+  --muted: 220 65% 96%;
+  --muted-foreground: 221 18% 42%;
+  --border: 220 45% 88%;
+  --ring: 210 86% 72%;
+  --primary: 217 52% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 100%;
+  --secondary-foreground: 222 34% 24%;
+  --accent: 257 77% 88%;
+  --accent-foreground: 222 32% 24%;
+  --success: 151 43% 74%;
+  --warning: 28 84% 80%;
+  --mint: 151 45% 78%;
+  --sand: 29 90% 86%;
+  --sky: 206 83% 77%;
+  --lavender: 258 76% 86%;
+}
+
+html[data-theme="dark"] {
   --background: 222 49% 9%;
   --foreground: 220 30% 96%;
   --card: 221 32% 14%;
@@ -36,10 +58,19 @@ body {
   min-width: 320px;
   margin: 0;
   background:
+    radial-gradient(circle at 12% 0%, rgba(185, 220, 255, 0.75), transparent 26%),
+    radial-gradient(circle at 88% 10%, rgba(224, 211, 255, 0.58), transparent 24%),
+    radial-gradient(circle at 78% 42%, rgba(207, 247, 229, 0.48), transparent 20%),
+    linear-gradient(180deg, #fbfdff 0%, #f8f5ff 38%, #f6fff9 72%, #fff9f4 100%);
+  color: hsl(var(--foreground));
+  transition: background 260ms ease, color 260ms ease;
+}
+
+html[data-theme="dark"] body {
+  background:
     radial-gradient(circle at top, rgba(163, 183, 255, 0.12), transparent 26%),
     radial-gradient(circle at 85% 15%, rgba(199, 190, 255, 0.08), transparent 24%),
     linear-gradient(180deg, #07111f 0%, #0a1426 38%, #0d1830 100%);
-  color: hsl(var(--foreground));
 }
 
 a,
@@ -50,7 +81,41 @@ textarea,
 }
 
 ::selection {
-  background: rgba(167, 196, 255, 0.36);
+  background: rgba(181, 208, 255, 0.46);
+}
+
+.floating-accent {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(8px);
+  opacity: 0.85;
+  animation: float-soft 9s ease-in-out infinite;
+}
+
+.floating-accent--sky {
+  background: rgba(193, 224, 255, 0.75);
+}
+
+.floating-accent--lavender {
+  background: rgba(228, 214, 255, 0.72);
+}
+
+.floating-accent--mint {
+  background: rgba(206, 248, 228, 0.76);
+}
+
+.floating-accent--peach {
+  background: rgba(255, 224, 199, 0.78);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
